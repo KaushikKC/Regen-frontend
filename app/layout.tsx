@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThirdwebProvider 
-        clientId="e269eb848349f4f235be885bee179744"
+        clientId="e4da6258cfb49c8a0ef5787bfc8aa4ed"
         activeChain={ HederaTestnet }
         supportedWallets={[
           metamaskWallet(),
