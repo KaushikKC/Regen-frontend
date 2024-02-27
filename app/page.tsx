@@ -21,17 +21,9 @@ export default function Home() {
       <div className="z-10 relative left-[-450px] top-[150px]">
         <h1 className="text-4xl font-bold text-black mb-16 text-center">Welcome to the <span className="text-[#6BA865]">REGEN</span> </h1>
       <p className="text-lg text-black text-center font-semibold mb-4 w-[380px]">Sign-up to Continue</p>    
+        { showConnect ? (
+          <>
         <ConnectEmbed
-        auth={{
-          onLogin: () => {
-            router.push("/dashboard")
-            console.log("Connected auth")
-          },
-        }}
-        onConnect={() => {
-          router.push("/dashboard")
-          console.log("Connected connect")
-        }}
         theme={lightTheme({
           colors: {
             accentText: "#6BA865",
@@ -40,9 +32,16 @@ export default function Home() {
           },
         })}
         />
+        <div className="w-[300px] h-[50px] bg-white z-50 relative mt-[-55px]"></div>
+        </>
+      ): (
+        <div>
+          <p className="text-lg text-black text-center font-semibold mb-4 w-[380px]">Signed in Successfully.!! Redirecting to the dashboard..</p>
+        </div>
+      )}
         {/* <ConnectWallet /> */}
         
-<div className="w-[300px] h-[50px] bg-white z-50 relative mt-[-55px]"></div>
+
       </div>
     </main>
   );
