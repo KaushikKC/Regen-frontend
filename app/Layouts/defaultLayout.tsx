@@ -4,15 +4,15 @@ import React, { ReactNode, useState } from 'react'
 const menus = [
     {
       label: "Dashboard",
-      path: "/Dashboard",
+      path: "/dashboard",
     },
     {
-      label: "",
-      path: "/"
+      label: "Apply Loan",
+      path: "/applyLoan"
     },
     {
-      label: "",
-      path: "/"
+      label: "View Loans",
+      path: "/viewLoans"
     },
     {
       label: "",
@@ -35,14 +35,14 @@ function DefaultLayout({content}:any) {
   
     return (
       <div className="w-full h-max flex relative">
-        <div className="w-[200px] fixed h-[100vh] z-[100] bg-[#6BA865]">
-          <div className="text-xl text-white">
+        <div className="w-[250px] fixed h-[100vh] z-[100] bg-[#6BA865]">
+          <div className="text-2xl text-white font-bold  flex justify-center pt-6">
             <p>REGEN</p>
           </div>
           <div className="mt-[50px]">
             {menus.map((data, index) => (
               <>
-                <div key={index} className="flex items-center mr-[5px] mb-[15px] flex-col ml-[50px] text-left w-fit">
+                <div key={index} className="flex items-center mr-[5px] mb-[15px] flex-col ml-[75px] text-left w-fit">
                   {data.path ? (
                     <a href={data.path} className="text-white flex items-center mb-[15px]">
                       <p className="mr-[3px] text-[16px] font-semibold text-white"> {data.label}</p>
@@ -104,7 +104,7 @@ function DefaultLayout({content}:any) {
           </div>
         </div>
   
-        <div className="relative left-[204] w-[calc(100vw-204px)]  p-[58px 48px]">{content}</div>
+        <div className="relative left-[254] w-[calc(100vw-250px)]  p-[58px 48px]">{content}</div>
       </div>
     );
   };
