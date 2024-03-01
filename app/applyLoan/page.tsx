@@ -61,6 +61,20 @@ function page() {
     // Add other steps as needed
   };
 
+  const handleSubmit = () => {
+    const currentInputs: string[] = currentStepInputs[step];
+    const areCurrentStepInputsFilled = currentInputs.every(input => inputEntered[input]);
+    const areAllStepsFilled = Object.values(inputEntered).every(value => value);
+
+    if (areCurrentStepInputsFilled && areAllStepsFilled) {
+      // Proceed with submission
+      // Example: send data to server or perform other actions
+      console.log("Form submitted successfully!");
+    } else {
+      setError("Please fill in all the required fields.");
+    }
+  };
+
   let preStepInputsFilled = false;
   if (preStep > 0) {
     preStepInputsFilled = currentStepInputs[preStep].every(input => inputEntered[input]);
@@ -211,7 +225,7 @@ function page() {
                   type='text'
                   id='pan'
                   name='pan'
-                  className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500'
+                  className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
                   placeholder='Enter your PAN number'
                   onChange={e => handleInputChange('pan', e.target.value)}
                   required
@@ -219,7 +233,7 @@ function page() {
               </div>
             </Step>
 
-            <div className='flex justify-between mt-4'>
+            <div className='flex justify-between mt-4 mx-10'>
               <button
                 onClick={handlePrevStep}
                 className='px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50'
@@ -230,12 +244,24 @@ function page() {
               <button
                 onClick={handleNextStep}
                 className='px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50'
-                disabled={!areCurrentStepInputsFilled}
+                disabled={step === 3}
               >
                 Next
               </button>
+              </div>
+              <div className="flex justify-center mt-4">
+              <button
+                onClick={handleSubmit}
+                className="px-6 py-3 rounded bg-[#6BA865] text-white font-bold text-xl"
+              >
+                Submit
+              </button>
             </div>
-            {error && <p className='text-red-500 mt-2'>{error}</p>}
+
+            {/* Error message */}
+            {error && (
+              <div className="mt-4 text-red-500 text-center">{error}</div>
+            )}
           </div>
         </div>
       }

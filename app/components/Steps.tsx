@@ -41,7 +41,7 @@ const Step: React.FC<StepProps> = ({ title, children, completed = false, nextDis
   };
 
   return (
-    <div className={`border border-gray-300 mx-10 rounded-lg p-4 mb-6 ${completed ? 'opacity-50' : ''} ${!nextDisabled ? 'bg-gray-400 cursor-not-allowed' : ''}`}>
+    <div className={`border border-gray-300 mx-10 rounded-lg p-4 mb-6 ${completed ? 'opacity-50' : ''} `}>
       <div className='flex items-center justify-between'>
         <h3 className='text-lg font-semibold text-gray-800'>{title}</h3>
         <div className='flex items-center space-x-2'>

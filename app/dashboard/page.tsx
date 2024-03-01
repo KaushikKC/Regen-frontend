@@ -44,7 +44,7 @@ function Page() {
           </div>
         </div>
         {!registered && (
-          <div className='absolute inset-0 flex justify-center items-center'>
+          <div className='absolute inset-0 w-[100vw] flex justify-center items-center'>
             <div className='bg-[rgba(0,0,0,0.7)]/70 z-[9999] absolute backdrop-blur-md inset-0'></div>
             <div className='h-[500px] w-[450px] z-[99999] bg-[#fff1e3] rounded-md p-5'>
               <h2 className='text-2xl font-semibold text-black mb-4 text-center '>Policy Creation</h2>
