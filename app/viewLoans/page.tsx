@@ -5,7 +5,7 @@ import { ConnectWallet } from '@thirdweb-dev/react'
 import { FaUserCircle } from 'react-icons/fa'
 import LoanItem from '../components/LoanItem'
 
-function page() {
+function Page() {
     const loans = [
       {
         loanNo: "ATS 000260",
@@ -78,4 +78,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

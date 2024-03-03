@@ -9,7 +9,7 @@ interface InputState {
   [key: string]: boolean;
 }
 
-function page() {
+function Page() {
   const [inputEntered, setInputEntered] = useState<InputState>({
     mobile: false,
     email: false,
@@ -269,4 +269,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
