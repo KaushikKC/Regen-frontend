@@ -15,6 +15,10 @@ const menus = [
       path: "/viewLoans"
     },
     {
+      label: "Register Project",
+      path: "/projects"
+    },
+    {
       label: "",
       path:"/"
     },

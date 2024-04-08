@@ -3,7 +3,7 @@ import { ConnectWallet } from '@thirdweb-dev/react'
 import React, { useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import DefaultLayout from '../Layouts/defaultLayout';
-import {onboard} from "./Integ"
+import {project} from "./Integ"
 function Page() {
   const [registered, setRegistered] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ function Page() {
   const handleSubmit = async(e:any) => {
     e.preventDefault();
     try{
-      const res = await onboard();
+      const res = await project();
     }
     catch(err){
       console.log("error",err)
@@ -59,18 +59,11 @@ function Page() {
             <div className='h-[500px] w-[450px] z-[99999] bg-[#fff1e3] rounded-md p-5'>
               <h2 className='text-2xl font-semibold text-black mb-4 text-center '>Policy Creation</h2>
               <form onSubmit={handleSubmit} className='px-8 py-6'>
-                <input type='text' name='name' value={formData.name} onChange={handleInputChange} placeholder='Name' className='w-full border-b focus:border-none rounded-md bg-transparent px-3 py-2 mb-3' />
+                <input type='text' name='Project' value={formData.name} onChange={handleInputChange} placeholder='Name' className='w-full border-b focus:border-none rounded-md bg-transparent px-3 py-2 mb-3' />
                 <input type='text' name='location' value={formData.location} onChange={handleInputChange} placeholder='Location' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
-                <input type='text' name='proofOfWork' value={formData.proofOfWork} onChange={handleInputChange} placeholder='Proof of Work' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
-                <select name='aadharNumber' value={formData.aadharNumber} onChange={handleInputChange} className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3 text-gray-400'>
-                  <option value=''>Select Aadhar Number/Unique Number</option>
-                  <option value='aadhar'>Aadhar</option>
-                  <option value='other'>Other</option>
-                </select>
-                {formData.aadharNumber === 'other' && (
-                  <input type='text' name='otherAadharType' value={formData.otherAadharType} onChange={handleInputChange} placeholder='Enter Other Aadhar Type' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
-                )}
-                <input type='text' name='numberValue' value={formData.numberValue} onChange={handleInputChange} placeholder='Number Value' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
+                <input type='date' name='Started at' value={formData.proofOfWork} onChange={handleInputChange} placeholder='' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
+          
+                <input type='text' name='Offsetted Carbon' value={formData.numberValue} onChange={handleInputChange} placeholder='Number Value' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
                 <button type='submit' className='bg-[#6BA865] text-white font-bold px-4 py-2 rounded-md w-full mt-5'>Create a Policy</button>
               </form>
             </div>
