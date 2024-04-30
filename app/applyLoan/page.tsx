@@ -4,12 +4,14 @@ import DefaultLayout from "../Layouts/defaultLayout";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { FaUserCircle } from "react-icons/fa";
 import Step from "../components/Steps";
-
+import { useRouter } from "next/navigation";
 interface InputState {
   [key: string]: boolean;
 }
 
 function Page() {
+  const router = useRouter()
+
   const [inputEntered, setInputEntered] = useState<InputState>({
     mobile: false,
     email: false,
@@ -24,6 +26,16 @@ function Page() {
   const [activeStep, setActiveStep] = useState<number>(1);
   const [preStep, setPrevStep] = useState<number>(0);
   const [error, setError] = useState<string>('');
+
+
+  const [Name, setName] = useState("")
+
+  const [address, setAddress] = useState("");
+  const [amount, setAmount] = useState("");
+  const [landArea, setLandArea] = useState("");
+
+  const [pan, setPan] = useState("")
+
 
   const handleNextStep = () => {
     const currentInputs: string[] = currentStepInputs[step];
@@ -62,6 +74,11 @@ function Page() {
   };
 
   const handleSubmit = () => {
+
+    console.log("asdsa",inputEntered)
+    console.log("name",Name, pan, address, amount, landArea)
+
+    router.push("viewLoans")
     const currentInputs: string[] = currentStepInputs[step];
     const areCurrentStepInputsFilled = currentInputs.every(input => inputEntered[input]);
     const areAllStepsFilled = Object.values(inputEntered).every(value => value);
@@ -71,7 +88,6 @@ function Page() {
       // Example: send data to server or perform other actions
       console.log("Form submitted successfully!");
     } else {
-      setError("Please fill in all the required fields.");
     }
   };
 
@@ -96,64 +112,14 @@ function Page() {
               />
             </div>
             <p className='text-black text-xl font-bold flex justify-center my-10'>Loan Application</p>
-            <Step
-              title='Step 1. Mobile and email verification'
-              nextDisabled={true}
-              onNext={handleNextStep}
-              open={activeStep === 1}
-            >
-              <div className='flex space-x-4 mb-4'>
-                <div>
-                  <label htmlFor='mobile' className='block mb-1 text-black'>
-                    Mobile Number
-                  </label>
-                  <input
-                    type='tel'
-                    id='mobile'
-                    name='mobile'
-                    className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black' 
-                    placeholder='Enter your mobile number'
-                    onChange={e => handleInputChange('mobile', e.target.value)}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor='email' className='block mb-1 text-black'>
-                    Email ID
-                  </label>
-                  <input
-                    type='email'
-                    id='email'
-                    name='email'
-                    className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
-                    placeholder='Enter your email ID'
-                    onChange={e => handleInputChange('email', e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor='otp' className='block mb-1 text-black'>
-                  Enter OTP
-                </label>
-                <input
-                  type='text'
-                  id='otp'
-                  name='otp'
-                  className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
-                  placeholder='Enter OTP'
-                  onChange={e => handleInputChange('otp', e.target.value)}
-                  required
-                />
-              </div>
-            </Step>
+          
 
             <Step
-              title='Step 2. Personal details'
+              title='Step 1. Personal details'
               nextDisabled={!preStepInputsFilled}
               onNext={handleNextStep}
               onPrev={handlePrevStep}
-              open={activeStep === 2}
+              open={activeStep === 1}
             >
               <div>
                 <label htmlFor='name' className='block mb-1 text-black'>
@@ -165,41 +131,13 @@ function Page() {
                   name='name'
                   className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
                   placeholder='Enter your full name'
-                  onChange={e => handleInputChange('name', e.target.value)}
+                  onChange={e => setName( e.target.value)}
                   required
                 />
               </div>
               <div className='flex space-x-4 mb-4'>
-                <div>
-                  <label htmlFor='dob' className='block mb-1 text-black'>
-                    Date of Birth
-                  </label>
-                  <input
-                    type='date'
-                    id='dob'
-                    name='dob'
-                    className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
-                    onChange={e => handleInputChange('dob', e.target.value)}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor='gender' className='block mb-1 text-black'>
-                    Gender
-                  </label>
-                  <select
-                    id='gender'
-                    name='gender'
-                    className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
-                    onChange={e => handleInputChange('gender', e.target.value)}
-                    required
-                  >
-                    <option value=''>Select gender</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='other'>Other</option>
-                  </select>
-                </div>
+             
+              
               </div>
               <div>
                 <label htmlFor='address' className='block mb-1 text-black'>
@@ -210,13 +148,39 @@ function Page() {
                   name='address'
                   className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black' 
                   placeholder='Enter your address'
-                  onChange={e => handleInputChange('address', e.target.value)}
+                  onChange={e => setAddress(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <label htmlFor='address' className='block mb-1 text-black'>
+                  Land Area
+                </label>
+                <textarea
+                  id='address'
+                  name='address'
+                  className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black' 
+                  placeholder='Land Area in Acre'
+                  onChange={e => setLandArea(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <label htmlFor='address' className='block mb-1 text-black'>
+                 Required Amount
+                </label>
+                <textarea
+                  id='address'
+                  name='address'
+                  className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black' 
+                  placeholder='Amount in HBAR'
+                  onChange={e => setAmount(e.target.value)}
                   required
                 ></textarea>
               </div>
             </Step>
 
-            <Step title='Step 3. KYC details' nextDisabled={!areCurrentStepInputsFilled} onNext={handleNextStep} onPrev={handlePrevStep} open={activeStep === 3}>
+            <Step title='Step 2. KYC details' nextDisabled={!areCurrentStepInputsFilled} onNext={handleNextStep} onPrev={handlePrevStep} open={activeStep === 3}>
               <div>
                 <label htmlFor='pan' className='block mb-1 text-black'>
                   PAN Number
@@ -227,27 +191,15 @@ function Page() {
                   name='pan'
                   className='w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 text-black'
                   placeholder='Enter your PAN number'
-                  onChange={e => handleInputChange('pan', e.target.value)}
+                  onChange={e => setPan( e.target.value)}
                   required
                 />
               </div>
             </Step>
 
             <div className='flex justify-between mt-4 mx-10'>
-              <button
-                onClick={handlePrevStep}
-                className='px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50'
-                disabled={step === 1}
-              >
-                Prev
-              </button>
-              <button
-                onClick={handleNextStep}
-                className='px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50'
-                disabled={step === 3}
-              >
-                Next
-              </button>
+           
+      
               </div>
               <div className="flex justify-center mt-4">
               <button
@@ -258,10 +210,7 @@ function Page() {
               </button>
             </div>
 
-            {/* Error message */}
-            {error && (
-              <div className="mt-4 text-red-500 text-center">{error}</div>
-            )}
+          
           </div>
         </div>
       }

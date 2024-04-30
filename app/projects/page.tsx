@@ -59,11 +59,11 @@ function Page() {
             <div className='h-[500px] w-[450px] z-[99999] bg-[#fff1e3] rounded-md p-5'>
               <h2 className='text-2xl font-semibold text-black mb-4 text-center '>Project Registation</h2>
               <form onSubmit={handleSubmit} className='px-8 py-6'>
-                <input type='text' name='Project' value={formData.name} onChange={handleInputChange} placeholder='Name' className='w-full border-b focus:border-none rounded-md bg-transparent px-3 py-2 mb-3' />
-                <input type='text' name='location' value={formData.location} onChange={handleInputChange} placeholder='Location' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
-                <input type='date' name='Started at' value={formData.proofOfWork} onChange={handleInputChange} placeholder='' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
+                <input type='text' name='name' value={formData.name} onChange={handleInputChange} placeholder='Name' className='w-full border-b focus:border-none rounded-md bg-transparent px-3 py-2 mb-3 text-black' />
+                <input type='text' name='location' value={formData.location} onChange={handleInputChange} placeholder='Origin Location' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3 text-black' />
+                <input type='date' name='proofOfWork' value={formData.proofOfWork} onChange={handleInputChange} placeholder='Origin Date' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3 text-black' />
           
-                <input type='text' name='Offsetted Carbon' value={formData.numberValue} onChange={handleInputChange} placeholder='Number Value' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3' />
+                <input type='text' name='numberValue' value={formData.numberValue} onChange={handleInputChange} placeholder='Offsetted Carbon in Tons' className='w-full border-b rounded-md bg-transparent px-3 py-2 mb-3 text-black' />
                 <button type='submit' className='bg-[#6BA865] text-white font-bold px-4 py-2 rounded-md w-full mt-5'>Register</button>
               </form>
             </div>

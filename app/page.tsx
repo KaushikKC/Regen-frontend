@@ -4,13 +4,47 @@ import bg from "./Images/Group 1.png"
 import { ConnectEmbed, ConnectWallet, WalletConnect, lightTheme, useShowConnectEmbed } from "@thirdweb-dev/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   const showConnect = useShowConnectEmbed()
   const router = useRouter()
 
+  const check = async () => {
+    try {
+
+      const { ethereum } = window;
+      if (ethereum) {
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length > 0) {
+          const address = accounts[0];
+          const res = await axios.post('http://localhost:3000/api/users/check-user',{
+        address:address
+      })
+
+      console.log("Res",res);
+
+      if(res.status === 200){
+        console.log("resasdsa",res.data)
+      }
+        }
+      }
+  
+
+     
+    } catch (error) {
+      console.log("Werew",error)
+      
+    }
+  }
+
   useEffect(()=>{
     if(!showConnect){
+  
+
+
+      check();
+
       router.push("dashboard")
     }
   },[showConnect])
